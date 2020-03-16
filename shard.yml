@@ -4,6 +4,9 @@ version: 0.1.0
 authors:
   - Matheus Richard <matheusrichardt@gmail.com>
 
+description: |
+  Use Dontfile directly from your terminal.
+
 crystal: 0.33.0
 
 license: MIT
