@@ -1,0 +1,9 @@
+name: dontfile
+version: 0.1.0
+
+authors:
+  - Matheus Richard <matheusrichardt@gmail.com>
+
+crystal: 0.33.0
+
+license: MIT
