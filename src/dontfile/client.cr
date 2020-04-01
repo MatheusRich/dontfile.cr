@@ -1,6 +1,7 @@
 require "http/client"
 require "json"
 require "./error"
+require "./api/pages"
 
 module Dontfile
   class Client
@@ -27,3 +28,6 @@ module Dontfile
     end
   end
 end
+
+dontfile = Dontfile::Client.new
+pp dontfile.page("asdf")
