@@ -5,7 +5,7 @@ authors:
   - Matheus Richard <matheusrichardt@gmail.com>
 
 description: |
-  Use Dontfile directly from your terminal.
+  Crystal Wrapper for Dontfile API
 
 crystal: 0.33.0
 
