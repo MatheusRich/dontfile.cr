@@ -1,4 +1,4 @@
-require "./dontfile/cli"
+require "./**"
 
 # TODO: Write documentation for `Dontfile`
 module Dontfile
