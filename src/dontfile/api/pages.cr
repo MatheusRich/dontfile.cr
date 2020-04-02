@@ -6,7 +6,7 @@ module Dontfile
         Dontfile::Page.from_json(result)
       end
 
-      def update_page_content(page_path : String, content : String) : Dontfile::Page
+      def replace_page_content(page_path : String, content : String) : Dontfile::Page
         result = patch(json_resource_path(page_path), body: {"page" => {"content" => content}}.to_json)
         Dontfile::Page.from_json(result)
       end
