@@ -8,6 +8,7 @@ module Dontfile
     include Dontfile::Client::Pages
 
     BASE_URI = URI.parse("http://dontfile.com")
+    DEFAULT_HEADERS = HTTP::Headers{"content-type" => "application/json"}
 
     private getter http_client
 
@@ -17,8 +18,12 @@ module Dontfile
 
     def get(url : String, params = nil)
       response = http_client.get(url, params)
+      handle_response(response)
+    end
 
-      return handle_response(response)
+    def patch(url : String, body : String)
+      response = http_client.patch(url, headers: DEFAULT_HEADERS, body: body)
+      handle_response(response)
     end
 
     private def handle_response(response : HTTP::Client::Response)
