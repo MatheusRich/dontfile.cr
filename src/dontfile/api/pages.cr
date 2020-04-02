@@ -6,6 +6,15 @@ module Dontfile
         Dontfile::Page.from_json(result)
       end
 
+      def update_page_content(page_path : String, content : String) : Dontfile::Page
+        result = patch(json_resource_path(page_path), body: {"page" => {"content" => content}}.to_json)
+        Dontfile::Page.from_json(result)
+      end
+
+      def append_page_content
+        # TODO
+      end
+
       private def json_resource_path(path : String) : String
         "/#{sanitize_path(path)}.json"
       end

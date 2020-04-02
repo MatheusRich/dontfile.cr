@@ -35,4 +35,5 @@ module Dontfile
 end
 
 dontfile = Dontfile::Client.new
-pp dontfile.page("asdf")
+pp "Before: #{dontfile.page("test").inspect}"
+pp "After: #{dontfile.update_page_content("test", "FOI?").inspect}"
