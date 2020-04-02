@@ -18,12 +18,12 @@ module Dontfile
       end
 
       private def json_resource_path(path : String) : String
-        "/#{sanitize_path(path)}.json"
+        "#{sanitize_path(path)}.json"
       end
 
       private def sanitize_path(path : String) : String
         path = path.strip
-        path.insert(0, '/') unless path.starts_with? '/'
+        path = path.insert(0, '/') unless path.starts_with? '/'
 
         path
       end
