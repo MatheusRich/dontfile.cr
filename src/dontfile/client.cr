@@ -7,7 +7,7 @@ module Dontfile
   class Client
     include Dontfile::Client::Pages
 
-    BASE_URI = URI.parse("http://dontfile.com")
+    BASE_URI        = URI.parse("http://dontfile.com")
     DEFAULT_HEADERS = HTTP::Headers{"content-type" => "application/json"}
 
     private getter http_client
