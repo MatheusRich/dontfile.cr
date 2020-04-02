@@ -36,4 +36,4 @@ end
 
 dontfile = Dontfile::Client.new
 pp "Before: #{dontfile.page("test").inspect}"
-pp "After: #{dontfile.update_page_content("test", "FOI?").inspect}"
+pp "After: #{dontfile.append_page_content("test", "\nFOI?").inspect}"

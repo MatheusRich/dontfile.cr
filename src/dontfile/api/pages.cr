@@ -11,8 +11,10 @@ module Dontfile
         Dontfile::Page.from_json(result)
       end
 
-      def append_page_content
-        # TODO
+      def append_page_content(page_path : String, content  : String)
+        current_content = Dontfile::Page.from_path(page_path).content.to_s
+        result = patch(json_resource_path(page_path), body: {"page" => {"content" => current_content + content}}.to_json)
+        Dontfile::Page.from_json(result)
       end
 
       private def json_resource_path(path : String) : String
