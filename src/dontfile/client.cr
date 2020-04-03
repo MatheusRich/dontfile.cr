@@ -26,6 +26,12 @@ module Dontfile
       handle_response(response)
     end
 
+    def delete(url : String, params : Hash(String, String))
+      params = HTTP::Params.encode(params)
+      response = http_client.delete("#{url}?#{params}", headers: DEFAULT_HEADERS)
+      handle_response(response)
+    end
+
     private def handle_response(response : HTTP::Client::Response)
       return response.body if response.success?
 
