@@ -7,9 +7,9 @@ module Dontfile::Command
     args.shift
 
     case command.downcase
-    when "read"
+    when "read", "r"
       Dontfile::Command::ReadPage.run(args)
-    when "write"
+    when "write", "w"
       Dontfile::Command::WritePage.run(args)
     when "-v", "--version", "version"
       puts Dontfile::VERSION

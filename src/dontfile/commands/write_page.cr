@@ -26,7 +26,7 @@ module Dontfile::Command
       config = Config.new
 
       OptionParser.parse(args) do |parser|
-        parser.banner = "Usage: dontfile write PAGE_PATH PAGE_CONTENT [opts].\n\nOptions:"
+        parser.banner = "Usage: dontfile write|w PAGE_PATH PAGE_CONTENT [opts].\n\nOptions:"
 
         parser.on("-h", "--help", "Show this help") { puts parser; exit }
 
