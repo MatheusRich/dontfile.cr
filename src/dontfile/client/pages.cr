@@ -17,6 +17,12 @@ module Dontfile
         Dontfile::Page.from_json(result)
       end
 
+      def prepend_page_content(page_path : String, content : String)
+        current_content = Dontfile::Page.from_path(page_path).content.to_s
+        result = patch(json_resource_path(page_path), body: {"page" => {"content" => content + current_content}}.to_json)
+        Dontfile::Page.from_json(result)
+      end
+
       def delete_page_file(page_path : String) : Dontfile::Page
         result = delete("/delete_file.json", params: {"url" => page_path})
         Dontfile::Page.from_json(result)

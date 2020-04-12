@@ -8,10 +8,12 @@ module Dontfile::Command
         config = parse_args(args)
         print "Writing... "
 
-        if config.writing_mode.replace?
-          Dontfile::Client.new.replace_page_content(config.page_path, config.page_content)
-        else
+        if config.writing_mode.append?
           Dontfile::Client.new.append_page_content(config.page_path, config.page_content)
+        elsif config.writing_mode.prepend?
+          Dontfile::Client.new.prepend_page_content(config.page_path, config.page_content)
+        else
+          Dontfile::Client.new.replace_page_content(config.page_path, config.page_content)
         end
 
         puts "Done!"
@@ -34,6 +36,10 @@ module Dontfile::Command
 
         parser.on("-a", "--append", "Adds new content to the end of the current page's content") do
           config.writing_mode = Config::WritingMode::Append
+        end
+
+        parser.on("-p", "--prepend", "Adds new content to the beginning of the current page's content") do
+          config.writing_mode = Config::WritingMode::Prepend
         end
 
         parser.unknown_args do |args, _|
@@ -64,6 +70,7 @@ module Dontfile::Command
     private class Config
       enum WritingMode
         Append
+        Prepend
         Replace
       end
 
