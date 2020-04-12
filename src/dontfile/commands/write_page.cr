@@ -28,7 +28,7 @@ module Dontfile::Command
       OptionParser.parse(args) do |parser|
         parser.banner = "Usage: dontfile write PAGE_PATH PAGE_CONTENT [opts].\n\nOptions:"
 
-        parser.on("-h", "--help", "Show this help") { puts parser }
+        parser.on("-h", "--help", "Show this help") { puts parser; exit }
 
         parser.on("-F", "--force", "Fully replaces the content of the page") do
           config.writing_mode = Config::WritingMode::Replace
