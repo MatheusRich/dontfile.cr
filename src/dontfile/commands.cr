@@ -10,6 +10,7 @@ module Dontfile::Command
     when "read"
       Dontfile::Command::ReadPage.run(args)
     when "write"
+      Dontfile::Command::WritePage.run(args)
     else
       puts "Unknown command"
     end
