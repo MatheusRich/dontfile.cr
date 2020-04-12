@@ -1,7 +1,7 @@
 require "http/client"
 require "json"
 require "./error"
-require "./api/pages"
+require "./client/pages"
 
 module Dontfile
   class Client
