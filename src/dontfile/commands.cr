@@ -11,6 +11,8 @@ module Dontfile::Command
       Dontfile::Command::ReadPage.run(args)
     when "write"
       Dontfile::Command::WritePage.run(args)
+    when "-v", "--version", "version"
+      puts Dontfile::VERSION
     else
       puts "Unknown command"
     end
