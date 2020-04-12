@@ -6,7 +6,7 @@ module Dontfile::Command
     def self.run(args)
       begin
         config = parse_args(args)
-        puts "Writing..."
+        print "Writing... "
 
         if config.writing_mode.replace?
           Dontfile::Client.new.replace_page_content(config.page_path, config.page_content)
