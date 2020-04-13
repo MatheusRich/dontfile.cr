@@ -4,17 +4,17 @@ module Dontfile::Command
 
     return puts "No command given" if command.empty?
 
-    args.shift
-
     case command.downcase
     when "read", "r"
+      args.shift
       Dontfile::Command::ReadPage.run(args)
     when "write", "w"
+      args.shift
       Dontfile::Command::WritePage.run(args)
     when "-v", "--version", "version"
       puts Dontfile::VERSION
     else
-      puts "Unknown command"
+      Dontfile::Command::ReadPage.run(args)
     end
   end
 end
