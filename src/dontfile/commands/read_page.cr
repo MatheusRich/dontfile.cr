@@ -1,4 +1,5 @@
 require "../page"
+require "../errors"
 
 module Dontfile::Command
   module ReadPage
@@ -24,7 +25,7 @@ module Dontfile::Command
         parser.unknown_args do |args, _|
           config.page_path = args.first? || ""
 
-          raise Error.new "Argument 'PAGE_PATH' is missing.\n#{parser}" if config.page_path.empty?
+          raise Dontfile::Errors::InternalError.new "Argument 'PAGE_PATH' is missing.\n#{parser}" if config.page_path.empty?
         end
 
         parser.invalid_option do |flag|

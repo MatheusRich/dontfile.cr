@@ -46,7 +46,7 @@ module Dontfile::Command
           config.page_path = args.first? || ""
           config.page_content = args[1]? || ""
 
-          raise Error.new "Argument 'PAGE_PATH' is missing.\n#{parser}" if config.page_path.empty?
+          raise Dontfile::Errors::InternalError.new "Argument 'PAGE_PATH' is missing.\n#{parser}" if config.page_path.empty?
         end
 
         parser.missing_option do |flag|

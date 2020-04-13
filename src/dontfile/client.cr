@@ -1,6 +1,6 @@
 require "http/client"
 require "json"
-require "./error"
+require "./errors"
 require "./client/pages"
 
 module Dontfile
@@ -35,7 +35,20 @@ module Dontfile
     private def handle_response(response : HTTP::Client::Response)
       return response.body if response.success?
 
-      raise Dontfile::Error.new("Bad HTTP Request. Status #{response.status_code}: #{response.status_message}")
+      case response.status_code
+      when 400..499
+        raise Dontfile::Errors::ClientError.new("HTTP status #{response.status_code}: #{response.status_message}")
+      when 500
+        raise Dontfile::Errors::ServerError.new("Internal Server Error")
+      when 502
+        raise Dontfile::Errors::ServerError.new("Bad Gateway")
+      when 503
+        raise Dontfile::Errors::ServerError.new("Service Unavailable")
+      when 504
+        raise Dontfile::Errors::ServerError.new("Gateway Timeout")
+      else
+        raise Dontfile::Errors::ServerError.new("HTTP status #{response.status_code}: #{response.status_message}")
+      end
     end
   end
 end
