@@ -1,3 +1,5 @@
+require "json"
+
 module Dontfile
   class Page
     JSON.mapping(
