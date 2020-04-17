@@ -7,6 +7,10 @@ authors:
 description: |
   Crystal Wrapper for Dontfile API
 
-crystal: 0.33.0
+development_dependencies:
+  coverage:
+    github: anykeyh/crystal-coverage
+
+crystal: 0.34.0
 
 license: MIT
