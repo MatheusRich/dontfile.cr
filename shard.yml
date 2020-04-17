@@ -9,7 +9,9 @@ description: |
 
 development_dependencies:
   coverage:
-    github: anykeyh/crystal-coverage
+    github: MatheusRich/crystal-coverage
+    branch: restyle-html-report
+
   vcr:
     github: MatheusRich/vcr.cr
     branch: master
