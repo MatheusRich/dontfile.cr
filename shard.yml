@@ -10,7 +10,10 @@ description: |
 development_dependencies:
   coverage:
     github: anykeyh/crystal-coverage
-
+  vcr:
+    github: MatheusRich/vcr.cr
+    branch: master
+  
 crystal: 0.34.0
 
 license: MIT
