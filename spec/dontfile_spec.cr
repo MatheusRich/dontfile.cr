@@ -1,5 +1,7 @@
 require "./spec_helper"
 
 describe Dontfile do
-  # TODO: Write tests
+  it "has a version" do
+    Dontfile::VERSION.should_not be_nil
+  end
 end
