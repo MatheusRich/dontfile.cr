@@ -12,7 +12,7 @@ describe Dontfile::Page do
   end
 
   describe ".from_path" do
-    load_cassette("cassette-one") do
+    load_cassette("page-request") do
       path = "some-page"
       page = Dontfile::Page.from_path(path)
 
