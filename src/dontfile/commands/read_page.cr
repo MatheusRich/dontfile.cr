@@ -4,14 +4,12 @@ require "../errors"
 module Dontfile::Command
   module ReadPage
     def self.run(args : Array(String))
-      begin
-        config = parse_args(args)
-        page_path = config.page_path
+      config = parse_args(args)
+      page_path = config.page_path
 
-        puts Dontfile::Page.from_path(page_path).content
-      rescue e
-        STDERR.puts "ERROR: #{e}"
-      end
+      puts Dontfile::Page.from_path(page_path).content
+    rescue e
+      STDERR.puts "ERROR: #{e}"
     end
 
     private def self.parse_args(args) : Config
@@ -22,8 +20,8 @@ module Dontfile::Command
 
         parser.on("-h", "--help", "Show this help") { puts parser; exit }
 
-        parser.unknown_args do |args, _|
-          config.page_path = args.first? || ""
+        parser.unknown_args do |unknown_args, _|
+          config.page_path = unknown_args.first? || ""
 
           raise Dontfile::Errors::InternalError.new "Argument 'PAGE_PATH' is missing.\n#{parser}" if config.page_path.empty?
         end

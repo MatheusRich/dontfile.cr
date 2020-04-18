@@ -4,22 +4,20 @@ require "../page"
 module Dontfile::Command
   module WritePage
     def self.run(args)
-      begin
-        config = parse_args(args)
-        print "Writing... "
+      config = parse_args(args)
+      print "Writing... "
 
-        if config.writing_mode.append?
-          Dontfile::Client.new.append_page_content(config.page_path, config.page_content)
-        elsif config.writing_mode.prepend?
-          Dontfile::Client.new.prepend_page_content(config.page_path, config.page_content)
-        else
-          Dontfile::Client.new.replace_page_content(config.page_path, config.page_content)
-        end
-
-        puts "Done!"
-      rescue e
-        STDERR.puts "ERROR: #{e}"
+      if config.writing_mode.append?
+        Dontfile::Client.new.append_page_content(config.page_path, config.page_content)
+      elsif config.writing_mode.prepend?
+        Dontfile::Client.new.prepend_page_content(config.page_path, config.page_content)
+      else
+        Dontfile::Client.new.replace_page_content(config.page_path, config.page_content)
       end
+
+      puts "Done!"
+    rescue e
+      STDERR.puts "ERROR: #{e}"
     end
 
     private def self.parse_args(args) : Config
@@ -42,9 +40,9 @@ module Dontfile::Command
           config.writing_mode = Config::WritingMode::Prepend
         end
 
-        parser.unknown_args do |args, _|
-          config.page_path = args.first? || ""
-          config.page_content = args[1]? || ""
+        parser.unknown_args do |unknown_args, _|
+          config.page_path = unknown_args.first? || ""
+          config.page_content = unknown_args[1]? || ""
 
           raise Dontfile::Errors::InternalError.new "Argument 'PAGE_PATH' is missing.\n#{parser}" if config.page_path.empty?
         end
